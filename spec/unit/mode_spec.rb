@@ -10,6 +10,7 @@ RSpec.describe TTY::Color::Mode, 'detecting mode' do
   end
 
   it "cannot find from term, tput " do
+    allow(TTY::Color).to receive(:tty?).and_return(true)
     allow(color).to receive(:from_term).and_return(TTY::Color::NoValue)
     allow(color).to receive(:from_tput).and_return(TTY::Color::NoValue)
 
