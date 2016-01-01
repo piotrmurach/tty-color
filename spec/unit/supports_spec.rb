@@ -1,16 +1,27 @@
 # encoding: utf-8
 
-RSpec.describe TTY::Color, '#supports?' do
+RSpec.describe TTY::Color::Support, '#supports?' do
   let(:output) { StringIO.new('', 'w+') }
 
-  subject(:color) { described_class }
+  subject(:color) { described_class.new }
 
-  before { color.output = output }
+  before { TTY::Color.output = output }
 
   it "doesn't check color support for non tty terminal" do
-    allow(output).to receive(:tty?).and_return(false)
+    allow(TTY::Color).to receive(:tty?).and_return(false)
 
-    expect(color.color?).to eq(false)
+    expect(color.supports?).to eq(false)
+  end
+
+  it "fails to find out color support" do
+    allow(TTY::Color).to receive(:tty?).and_return(true)
+
+    allow(color).to receive(:from_curses).and_return(TTY::Color::NoValue)
+    allow(color).to receive(:from_tput).and_return(TTY::Color::NoValue)
+    allow(color).to receive(:from_term).and_return(TTY::Color::NoValue)
+    allow(color).to receive(:from_env).and_return(TTY::Color::NoValue)
+
+    expect(color.supports?).to eq(false)
   end
 
   it "fails to load curses for color support" do
@@ -18,18 +29,18 @@ RSpec.describe TTY::Color, '#supports?' do
       and_raise(LoadError)
     allow(color).to receive(:warn)
 
-    expect(color.from_curses).to eq(described_class::NoValue)
+    expect(color.from_curses).to eq(TTY::Color::NoValue)
     expect(color).to_not have_received(:warn)
   end
 
   it "sets verbose mode on" do
-    color.verbose = true
+    TTY::Color.verbose = true
     allow(color).to receive(:require).with('curses').
       and_raise(LoadError)
     allow(color).to receive(:warn)
     color.from_curses
     expect(color).to have_received(:warn).with(/no native curses support/)
-    color.verbose = false
+    TTY::Color.verbose = false
   end
 
   it "loads curses for color support" do
