@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+Signal.trap("INT") { exit 1 }
+
+lib_dir = File.expand_path("../../lib", __FILE__)
+$LOAD_PATH.unshift(lib_dir) if File.directory?(lib_dir)
+
+require 'optparse'
+require 'tty-color'
+
+options = {}
+
+parser = OptionParser.new do |opts|
+  opts.on('-m', '--mode', 'Supported colors mode') do
+    options[:mode] = true
+  end
+
+  options[:verbose] = false
+  opts.on('-v', '--verbose', 'Output debug information' ) do
+    options[:verbose] = true
+  end
+
+  opts.on('-h', '--help', 'Display help' ) do
+    puts opts
+    exit
+  end
+end
+
+parser.parse!
+
+TTY::Color.verbose = options[:verbose]
+
+if options[:mode]
+  puts TTY::Color.mode
+else
+  puts TTY::Color.color?
+end
+
