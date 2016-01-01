@@ -50,6 +50,14 @@ include TTY::Color
 puts color?
 ```
 
+## Command line tool
+
+**TTY::Color** comes with a command line tool to detect color support in terminal. The results are redirected to standard output.
+
+```bash
+color
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/peter-murach/tty-color/fork )
