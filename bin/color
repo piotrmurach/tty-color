@@ -11,6 +11,10 @@ require 'tty-color'
 options = {}
 
 parser = OptionParser.new do |opts|
+  opts.on('-s', '--support', 'Check if terminal supports colors') do
+    options[:color] = true
+  end
+
   opts.on('-m', '--mode', 'Supported colors mode') do
     options[:mode] = true
   end
