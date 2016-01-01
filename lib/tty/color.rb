@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'tty/color/mode'
+
 module TTY
   # Responsible for checking terminal color support
   #
@@ -80,6 +82,18 @@ module TTY
     # @api private
     def from_env
       ENV.include?('COLORTERM')
+    end
+
+    # @api public
+    def mode
+      Mode.new.mode
+    end
+
+    # TERM environment variable
+    #
+    # @api public
+    def term
+      ENV['TERM']
     end
 
     # @api private
