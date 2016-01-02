@@ -40,6 +40,12 @@ TTY::Color.color?     # => true
 TTY::Color.supports?  # => true
 ```
 
+Also you can get the number of colors supported by the terminal:
+
+```ruby
+TTY::Color.mode # => 64
+```
+
 **TTY::Color** is just a module hence you can include it into your scripts directly:
 
 ```ruby
