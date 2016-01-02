@@ -62,6 +62,15 @@ puts color?
 
 ```bash
 color
+color -s
+color --support
+```
+
+and to check number of colors:
+
+```bash
+color -m
+color --mode
 ```
 
 ## Contributing
