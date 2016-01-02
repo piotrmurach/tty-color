@@ -20,7 +20,7 @@ module TTY
     attr_accessor :output, :verbose
 
     def supports?
-      Support.new.supports?
+      Support.new(ENV, verbose: verbose).supports?
     end
     alias_method :color?, :supports?
     alias_method :supports_color?, :supports?

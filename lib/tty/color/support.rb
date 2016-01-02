@@ -3,6 +3,13 @@
 module TTY
   module Color
     class Support
+      # Initialize a color support
+      # @api public
+      def initialize(env, options = {})
+        @env = env
+        @verbose = options.fetch(:verbose) { false }
+      end
+
       # Detect if terminal supports color
       #
       # @return [Boolean]
@@ -38,7 +45,7 @@ module TTY
           NoValue
         end
       rescue LoadError
-        warn 'no native curses support' if TTY::Color.verbose
+        warn 'no native curses support' if @verbose
         NoValue
       end
 
@@ -55,16 +62,18 @@ module TTY
       #
       # @api private
       def from_term
-        case ENV['TERM']
+        case @env['TERM']
         when 'dumb' then false
         when /^screen|^xterm|^vt100|color|ansi|cygwin|linux/i then true
         else NoValue
         end
       end
 
+      # Check if environment specifies color term
+      #
       # @api private
       def from_env
-        ENV.include?('COLORTERM')
+        @env.include?('COLORTERM')
       end
     end # Support
   end # Color
