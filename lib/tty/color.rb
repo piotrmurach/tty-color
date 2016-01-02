@@ -25,9 +25,13 @@ module TTY
     alias_method :color?, :supports?
     alias_method :supports_color?, :supports?
 
+    # Check how many colors this terminal supports
+    #
+    # @return [Integer]
+    #
     # @api public
     def mode
-      Mode.new.mode
+      Mode.new(ENV).mode
     end
 
     # TERM environment variable
