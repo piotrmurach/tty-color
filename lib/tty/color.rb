@@ -34,13 +34,6 @@ module TTY
       Mode.new(ENV).mode
     end
 
-    # TERM environment variable
-    #
-    # @api public
-    def term
-      ENV['TERM']
-    end
-
     # @api private
     def tty?
       output.tty?
