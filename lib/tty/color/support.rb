@@ -3,6 +3,8 @@
 module TTY
   module Color
     class Support
+      SOURCES = %w(from_term from_tput from_env from_curses)
+
       # Initialize a color support
       # @api public
       def initialize(env, options = {})
@@ -20,7 +22,7 @@ module TTY
         return false unless TTY::Color.tty?
 
         value = false
-        %w(from_curses from_tput from_term from_env).each do |from_check|
+        SOURCES.each do |from_check|
           break if (value = public_send(from_check)) != NoValue
         end
         return false if value == NoValue
