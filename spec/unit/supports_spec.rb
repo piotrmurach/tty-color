@@ -17,6 +17,11 @@ RSpec.describe TTY::Color::Support, '#supports?' do
     allow(support).to receive(:from_env).and_return(TTY::Color::NoValue)
 
     expect(support.supports?).to eq(false)
+
+    expect(support).to have_received(:from_term).ordered
+    expect(support).to have_received(:from_tput).ordered
+    expect(support).to have_received(:from_env).ordered
+    expect(support).to have_received(:from_curses).ordered
   end
 
   it "fails to load curses for color support" do
