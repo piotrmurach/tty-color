@@ -35,7 +35,7 @@ module TTY
         return 0 unless TTY::Color.tty?
 
         value = 8
-        %w(from_tput from_term).each do |from_check|
+        %w(from_term from_tput).each do |from_check|
           break if (value = public_send(from_check)) != NoValue
         end
         return 8 if value == NoValue
@@ -67,7 +67,7 @@ module TTY
       #
       # @api private
       def from_tput
-        colors = %x(tput colors 2>/dev/null).to_i
+        colors = `tput colors 2>/dev/null`.to_i
         colors >= 8 ? colors : NoValue
       rescue Errno::ENOENT
         NoValue
