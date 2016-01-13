@@ -24,52 +24,79 @@ RSpec.describe TTY::Color::Support, '#supports?' do
     expect(support).to have_received(:from_curses).ordered
   end
 
-  it "fails to load curses for color support" do
-    support = described_class.new({})
-    allow(support).to receive(:require).with('curses').
-      and_raise(LoadError)
-    allow(support).to receive(:warn)
-
-    expect(support.from_curses).to eq(TTY::Color::NoValue)
-    expect(support).to_not have_received(:warn)
-  end
-
-  it "sets verbose mode on" do
-    support = described_class.new({}, verbose: true)
-    allow(support).to receive(:require).with('curses').
-      and_raise(LoadError)
-    allow(support).to receive(:warn)
-
-    support.from_curses
-
-    expect(support).to have_received(:warn).with(/no native curses support/)
-  end
-
-  it "loads curses for color support" do
-    support = described_class.new({})
-    allow(support).to receive(:require).with('curses').and_return(true)
-    stub_const("Curses", Object.new)
-    curses = double(:curses)
-    allow(curses).to receive(:init_screen)
-    allow(curses).to receive(:has_colors?).and_return(true)
-    allow(curses).to receive(:close_screen)
-
-    expect(support.from_curses(curses)).to eql(true)
-    expect(curses).to have_received(:has_colors?)
-  end
-
-  it "fails to find color for dumb terminal" do
-    support = described_class.new('TERM' => 'dumb')
-    expect(support.from_term).to eq(false)
-  end
-
-  it "inspects term variable for color capabilities" do
+  it "detects color support" do
     support = described_class.new('TERM' => 'xterm')
-    expect(support.from_term).to eq(true)
+    allow(TTY::Color).to receive(:tty?).and_return(true)
+    allow(support).to receive(:from_tput)
+
+    expect(support.supports?).to eq(true)
+    expect(support).to_not have_received(:from_tput)
   end
 
-  it "inspects color terminal variable for support" do
-    support = described_class.new('COLORTERM' => true)
-    expect(support.from_env).to eq(true)
+  context '#from_curses' do
+    it "fails to load curses for color support" do
+      support = described_class.new({})
+      allow(support).to receive(:require).with('curses').
+        and_raise(LoadError)
+      allow(support).to receive(:warn)
+
+      expect(support.from_curses).to eq(TTY::Color::NoValue)
+      expect(support).to_not have_received(:warn)
+    end
+
+    it "fails to find Curses namespace" do
+      support = described_class.new({})
+      allow(support).to receive(:require).with('curses')
+
+      expect(support.from_curses).to eq(TTY::Color::NoValue)
+    end
+
+    it "sets verbose mode on" do
+      support = described_class.new({}, verbose: true)
+      allow(support).to receive(:require).with('curses').
+        and_raise(LoadError)
+      allow(support).to receive(:warn)
+
+      support.from_curses
+
+      expect(support).to have_received(:warn).with(/no native curses support/)
+    end
+
+    it "loads curses for color support" do
+      support = described_class.new({})
+      allow(support).to receive(:require).with('curses').and_return(true)
+      stub_const("Curses", Object.new)
+      curses = double(:curses)
+      allow(curses).to receive(:init_screen)
+      allow(curses).to receive(:has_colors?).and_return(true)
+      allow(curses).to receive(:close_screen)
+
+      expect(support.from_curses(curses)).to eql(true)
+      expect(curses).to have_received(:has_colors?)
+    end
+  end
+
+  context '#form_term' do
+    it "fails to find color for dumb terminal" do
+      support = described_class.new('TERM' => 'dumb')
+      expect(support.from_term).to eq(false)
+    end
+
+    it "inspects term variable for color capabilities" do
+      support = described_class.new('TERM' => 'xterm')
+      expect(support.from_term).to eq(true)
+    end
+
+    it "fails to find color capabilities from term variable " do
+      support = described_class.new('TERM' => 'atari')
+      expect(support.from_term).to eq(TTY::Color::NoValue)
+    end
+  end
+
+  context '#from_env' do
+    it "inspects color terminal variable for support" do
+      support = described_class.new('COLORTERM' => true)
+      expect(support.from_env).to eq(true)
+    end
   end
 end
