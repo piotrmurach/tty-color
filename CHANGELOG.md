@@ -8,7 +8,7 @@
 * Change ordering of color mode
 * Change Support#from_env to check ansicon
 * Ensure #tty? works for non-terminal devices
-* Remove executable
+* Remove color executable
 
 ## [v0.1.0] - 2016-01-02
 
