@@ -3,7 +3,7 @@
 module TTY
   module Color
     class Support
-      SOURCES = %w(from_term from_tput from_env from_curses)
+      SOURCES = %w(from_term from_tput from_env from_curses).freeze
 
       # Initialize a color support
       # @api public
@@ -29,6 +29,26 @@ module TTY
         value
       end
 
+      # Inspect environment $TERM variable for color support
+      #
+      # @api private
+      def from_term
+        case @env['TERM']
+        when 'dumb' then false
+        when /^screen|^xterm|^vt100|color|ansi|cygwin|linux/i then true
+        else NoValue
+        end
+      end
+
+      # Shell out to tput to check color support
+      #
+      # @api private
+      def from_tput
+        `tput colors 2>/dev/null`.to_i > 2
+      rescue Errno::ENOENT
+        NoValue
+      end
+
       # Attempt to load curses to check color support
       #
       # @return [Boolean]
@@ -49,26 +69,6 @@ module TTY
       rescue LoadError
         warn 'no native curses support' if @verbose
         NoValue
-      end
-
-      # Shell out to tput to check color support
-      #
-      # @api private
-      def from_tput
-        %x(tput colors 2>/dev/null).to_i > 2
-      rescue Errno::ENOENT
-        NoValue
-      end
-
-      # Inspect environment $TERM variable for color support
-      #
-      # @api private
-      def from_term
-        case @env['TERM']
-        when 'dumb' then false
-        when /^screen|^xterm|^vt100|color|ansi|cygwin|linux/i then true
-        else NoValue
-        end
       end
 
       # Check if environment specifies color term
