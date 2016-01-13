@@ -49,6 +49,13 @@ module TTY
         NoValue
       end
 
+      # Check if environment specifies color variables
+      #
+      # @api private
+      def from_env
+        ['COLORTERM', 'ANSICON'].any? { |key| @env.key?(key) } || NoValue
+      end
+
       # Attempt to load curses to check color support
       #
       # @return [Boolean]
@@ -69,13 +76,6 @@ module TTY
       rescue LoadError
         warn 'no native curses support' if @verbose
         NoValue
-      end
-
-      # Check if environment specifies color term
-      #
-      # @api private
-      def from_env
-        @env.include?('COLORTERM')
       end
     end # Support
   end # Color

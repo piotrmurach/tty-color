@@ -94,9 +94,19 @@ RSpec.describe TTY::Color::Support, '#supports?' do
   end
 
   context '#from_env' do
-    it "inspects color terminal variable for support" do
+    it "finds color support in colorterm variable" do
       support = described_class.new('COLORTERM' => true)
       expect(support.from_env).to eq(true)
+    end
+
+    it "finds ansicon support" do
+      support = described_class.new('ANSICON' => true)
+      expect(support.from_env).to eq(true)
+    end
+
+    it "doesn't find any keys in environment" do
+      support = described_class.new({})
+      expect(support.from_env).to eq(TTY::Color::NoValue)
     end
   end
 end
