@@ -19,6 +19,11 @@ module TTY
 
     attr_accessor :output, :verbose
 
+    # Check if terminal supports colors
+    #
+    # @return [Boolean]
+    #
+    # @api public
     def supports?
       Support.new(ENV, verbose: verbose).supports?
     end
@@ -34,9 +39,13 @@ module TTY
       Mode.new(ENV).mode
     end
 
-    # @api private
+    # Check if output is linked with terminal
+    #
+    # @return [Boolean]
+    #
+    # @api public
     def tty?
-      output.tty?
+      output.respond_to(:tty?) && output.tty?
     end
   end # Color
 end # TTY
