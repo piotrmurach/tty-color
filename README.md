@@ -58,19 +58,18 @@ puts color?
 
 ## Command line tool
 
-**TTY::Color** comes with a command line tool to detect color support in terminal. The results are redirected to standard output.
+[tty-color-cli](https://github.com/peter-murach/tty-color-cli) is a command line tool for the **TTY::Color**.
+
+To check if terminal supports colors do:
 
 ```bash
-color
 color -s
-color --support
 ```
 
-and to check number of colors:
+and to check color mode:
 
 ```bash
 color -m
-color --mode
 ```
 
 ## Contributing
