@@ -45,7 +45,7 @@ module TTY
     #
     # @api public
     def tty?
-      output.respond_to(:tty?) && output.tty?
+      output.respond_to?(:tty?) && output.tty?
     end
   end # Color
 end # TTY
