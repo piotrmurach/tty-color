@@ -1,19 +1,19 @@
 # TTY::Color
 [![Gem Version](https://badge.fury.io/rb/tty-color.svg)][gem]
-[![Build Status](https://secure.travis-ci.org/peter-murach/tty-color.svg?branch=master)][travis]
-[![Code Climate](https://codeclimate.com/github/peter-murach/tty-color/badges/gpa.svg)][codeclimate]
-[![Coverage Status](https://coveralls.io/repos/peter-murach/tty-color/badge.svg)][coverage]
-[![Inline docs](http://inch-ci.org/github/peter-murach/tty-color.svg?branch=master)][inchpages]
+[![Build Status](https://secure.travis-ci.org/piotrmurach/tty-color.svg?branch=master)][travis]
+[![Code Climate](https://codeclimate.com/github/piotrmurach/tty-color/badges/gpa.svg)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/github/piotrmurach/tty-color/badge.svg)][coverage]
+[![Inline docs](http://inch-ci.org/github/piotrmurach/tty-color.svg?branch=master)][inchpages]
 
 [gem]: http://badge.fury.io/rb/tty-color
-[travis]: http://travis-ci.org/peter-murach/tty-color
-[codeclimate]: https://codeclimate.com/github/peter-murach/tty-color
-[coverage]: https://coveralls.io/r/peter-murach/tty-color
-[inchpages]: http://inch-ci.org/github/peter-murach/tty-color
+[travis]: http://travis-ci.org/piotrmurach/tty-color
+[codeclimate]: https://codeclimate.com/github/piotrmurach/tty-color
+[coverage]: https://coveralls.io/github/piotrmurach/tty-color
+[inchpages]: http://inch-ci.org/github/piotrmurach/tty-color
 
 > Terminal color capabilities detection.
 
-**TTY::Color** provides independent color support detection component for [TTY](https://github.com/peter-murach/tty) toolkit.
+**TTY::Color** provides independent color support detection component for [TTY](https://github.com/piotrmurach/tty) toolkit.
 
 ## Installation
 
@@ -58,7 +58,7 @@ puts color?
 
 ## Command line tool
 
-[tty-color-cli](https://github.com/peter-murach/tty-color-cli) is a command line tool for the **TTY::Color**.
+[tty-color-cli](https://github.com/piotrmurach/tty-color-cli) is a command line tool for the **TTY::Color**.
 
 To check if terminal supports colors do:
 
@@ -74,7 +74,7 @@ color -m
 
 ## Contributing
 
-1. Fork it ( https://github.com/peter-murach/tty-color/fork )
+1. Fork it ( https://github.com/piotrmurach/tty-color/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
