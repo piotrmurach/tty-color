@@ -1,6 +1,7 @@
 # TTY::Color [![Gitter](https://badges.gitter.im/Join%20Chat.svg)][gitter]
 [![Gem Version](https://badge.fury.io/rb/tty-color.svg)][gem]
 [![Build Status](https://secure.travis-ci.org/piotrmurach/tty-color.svg?branch=master)][travis]
+[![Build status](https://ci.appveyor.com/api/projects/status/j1nflklmnfrb2yrf?svg=true)][appveyor]
 [![Code Climate](https://codeclimate.com/github/piotrmurach/tty-color/badges/gpa.svg)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/github/piotrmurach/tty-color/badge.svg)][coverage]
 [![Inline docs](http://inch-ci.org/github/piotrmurach/tty-color.svg?branch=master)][inchpages]
@@ -8,6 +9,7 @@
 [gitter]: https://gitter.im/piotrmurach/tty
 [gem]: http://badge.fury.io/rb/tty-color
 [travis]: http://travis-ci.org/piotrmurach/tty-color
+[appveyor]: https://ci.appveyor.com/project/piotrmurach/tty-color
 [codeclimate]: https://codeclimate.com/github/piotrmurach/tty-color
 [coverage]: https://coveralls.io/github/piotrmurach/tty-color
 [inchpages]: http://inch-ci.org/github/piotrmurach/tty-color
