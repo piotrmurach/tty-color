@@ -66,6 +66,7 @@ module TTY
       #
       # @api private
       def from_curses(curses_class = nil)
+        return NoValue if TTY::Color.windows?
         require 'curses'
 
         if defined?(Curses)
@@ -73,10 +74,9 @@ module TTY
           curses_class.init_screen
           has_color = curses_class.has_colors?
           curses_class.close_screen
-          has_color
-        else
-          NoValue
+          return has_color
         end
+        NoValue
       rescue LoadError
         warn 'no native curses support' if @verbose
         NoValue

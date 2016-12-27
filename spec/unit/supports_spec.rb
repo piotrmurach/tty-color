@@ -36,8 +36,8 @@ RSpec.describe TTY::Color::Support, '#supports?' do
   context '#from_curses' do
     it "fails to load curses for color support" do
       support = described_class.new({})
-      allow(support).to receive(:require).with('curses').
-        and_raise(LoadError)
+      allow(TTY::Color).to receive(:windows?).and_return(false)
+      allow(support).to receive(:require).with('curses').and_raise(LoadError)
       allow(support).to receive(:warn)
 
       expect(support.from_curses).to eq(TTY::Color::NoValue)
@@ -46,6 +46,7 @@ RSpec.describe TTY::Color::Support, '#supports?' do
 
     it "fails to find Curses namespace" do
       support = described_class.new({})
+      allow(TTY::Color).to receive(:windows?).and_return(false)
       allow(support).to receive(:require).with('curses')
 
       expect(support.from_curses).to eq(TTY::Color::NoValue)
@@ -53,8 +54,8 @@ RSpec.describe TTY::Color::Support, '#supports?' do
 
     it "sets verbose mode on" do
       support = described_class.new({}, verbose: true)
-      allow(support).to receive(:require).with('curses').
-        and_raise(LoadError)
+      allow(TTY::Color).to receive(:windows?).and_return(false)
+      allow(support).to receive(:require).with('curses').and_raise(LoadError)
       allow(support).to receive(:warn)
 
       support.from_curses
@@ -64,6 +65,7 @@ RSpec.describe TTY::Color::Support, '#supports?' do
 
     it "loads curses for color support" do
       support = described_class.new({})
+      allow(TTY::Color).to receive(:windows?).and_return(false)
       allow(support).to receive(:require).with('curses').and_return(true)
       stub_const("Curses", Object.new)
       curses = double(:curses)
@@ -73,6 +75,12 @@ RSpec.describe TTY::Color::Support, '#supports?' do
 
       expect(support.from_curses(curses)).to eql(true)
       expect(curses).to have_received(:has_colors?)
+    end
+
+    it "doesn't check on windows" do
+      support = described_class.new({})
+      allow(TTY::Color).to receive(:windows?).and_return(false)
+      expect(support.from_curses).to eq(TTY::Color::NoValue)
     end
   end
 
