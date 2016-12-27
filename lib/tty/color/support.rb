@@ -44,7 +44,9 @@ module TTY
       #
       # @api private
       def from_tput
-        `tput colors 2>/dev/null`.to_i > 2
+        cmd = %q(tput colors 2>/dev/null)
+        return NoValue unless system(cmd)
+        `#{cmd}`.to_i > 2
       rescue Errno::ENOENT
         NoValue
       end
