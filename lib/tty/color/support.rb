@@ -45,7 +45,9 @@ module TTY
       # @api private
       def from_tput
         cmd = %q(tput colors 2>/dev/null)
-        return NoValue unless system(cmd)
+        if !TTY::Color.command?("tput colors")
+          return NoValue
+        end
         `#{cmd}`.to_i > 2
       rescue Errno::ENOENT
         NoValue

@@ -96,8 +96,8 @@ RSpec.describe TTY::Color::Support, '#supports?' do
   context '#from_tput' do
     it "fails to find tput utilty" do
       support = described_class.new({})
-      cmd = %q(tput colors 2>/dev/null)
-      allow(support).to receive(:system).with(cmd).and_return(nil)
+      cmd = "tput colors"
+      allow(TTY::Color).to receive(:command?).with(cmd).and_return(nil)
       expect(support.from_tput).to eq(TTY::Color::NoValue)
     end
   end
