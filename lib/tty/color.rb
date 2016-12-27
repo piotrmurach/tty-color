@@ -47,5 +47,14 @@ module TTY
     def tty?
       output.respond_to?(:tty?) && output.tty?
     end
+
+    # Check if command can be run
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def command?(cmd)
+      !!system(cmd, out: File::NULL, err: File::NULL)
+    end
   end # Color
 end # TTY
