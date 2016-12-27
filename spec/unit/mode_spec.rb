@@ -91,4 +91,13 @@ RSpec.describe TTY::Color::Mode, 'detecting mode' do
       expect(mode.from_term).to eq(TTY::Color::NoValue)
     end
   end
+
+  context '#from_tput' do
+    it "fails to find tput utilty" do
+      mode = described_class.new({})
+      cmd = "tput colors"
+      allow(TTY::Color).to receive(:command?).with(cmd).and_return(nil)
+      expect(mode.from_tput).to eq(TTY::Color::NoValue)
+    end
+  end
 end

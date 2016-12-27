@@ -56,7 +56,7 @@ module TTY
         when TERM_52  then 52
         when TERM_16  then 16
         when TERM_8   then 8
-        when /dummy/ then 0
+        when /dummy/  then 0
         else NoValue
         end
       end
@@ -67,6 +67,9 @@ module TTY
       #
       # @api private
       def from_tput
+        if !TTY::Color.command?("tput colors")
+          return NoValue
+        end
         colors = `tput colors 2>/dev/null`.to_i
         colors >= 8 ? colors : NoValue
       rescue Errno::ENOENT
