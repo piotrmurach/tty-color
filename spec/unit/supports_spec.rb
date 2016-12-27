@@ -79,7 +79,7 @@ RSpec.describe TTY::Color::Support, '#supports?' do
 
     it "doesn't check on windows" do
       support = described_class.new({})
-      allow(TTY::Color).to receive(:windows?).and_return(false)
+      allow(TTY::Color).to receive(:windows?).and_return(true)
       expect(support.from_curses).to eq(TTY::Color::NoValue)
     end
   end
