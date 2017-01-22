@@ -85,4 +85,4 @@ color -m
 
 ## Copyright
 
-Copyright (c) 2016 Piotr Murach. See LICENSE for further details.
+Copyright (c) 2016-2017 Piotr Murach. See LICENSE for further details.
