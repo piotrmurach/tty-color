@@ -1,5 +1,10 @@
 # Change log
 
+## [v0.4.1] - 2017-01-22
+
+### Fixed
+* Fix #windows? to reference top level constant
+
 ## [v0.4.0] - 2016-12-27
 
 ### Added
