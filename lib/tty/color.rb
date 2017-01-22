@@ -63,7 +63,7 @@ module TTY
     #
     # @api public
     def windows?
-      File::ALT_SEPARATOR == "\\"
+      ::File::ALT_SEPARATOR == "\\"
     end
   end # Color
 end # TTY
