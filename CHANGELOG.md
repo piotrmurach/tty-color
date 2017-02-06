@@ -1,5 +1,10 @@
 # Change log
 
+## [v0.4.2] - 2017-02-06
+
+### Fixed
+* Fix File namespaces
+
 ## [v0.4.1] - 2017-01-22
 
 ### Fixed
@@ -38,6 +43,8 @@
 
 * Initial implementation and release
 
+[v0.4.2]: https://github.com/peter-murach/tty-color/compare/v0.4.1...v0.4.2
+[v0.4.1]: https://github.com/peter-murach/tty-color/compare/v0.4.0...v0.4.1
 [v0.4.0]: https://github.com/peter-murach/tty-color/compare/v0.3.0...v0.4.0
 [v0.3.0]: https://github.com/peter-murach/tty-color/compare/v0.2.0...v0.3.0
 [v0.2.0]: https://github.com/peter-murach/tty-color/compare/v0.1.0...v0.2.0
