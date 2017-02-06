@@ -54,7 +54,7 @@ module TTY
     #
     # @api public
     def command?(cmd)
-      !!system(cmd, out: File::NULL, err: File::NULL)
+      !!system(cmd, out: ::File::NULL, err: ::File::NULL)
     end
 
     # Check if Windowz
