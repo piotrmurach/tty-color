@@ -3,7 +3,7 @@
 module TTY
   module Color
     class Mode
-      TERM_256 = /iTerm.app/x
+      TERM_256 = /iTerm(\s\d+){0,1}.app/x
 
       TERM_64 = /^(hpterm-color|wy370|wy370-105k|wy370-EPC|wy370-nk|
                  wy370-rv|wy370-tek|wy370-vb|wy370-w|wy370-wvb)$/x
