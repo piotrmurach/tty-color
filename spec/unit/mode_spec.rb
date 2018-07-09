@@ -36,6 +36,11 @@ RSpec.describe TTY::Color::Mode, 'detecting mode' do
       expect(mode.from_term).to eq(256)
     end
 
+    it 'infers mode for iTerm 2.app' do
+      mode = described_class.new('TERM' => 'iTerm 2.app')
+      expect(mode.from_term).to eq(256)
+    end
+
     it 'infers mode from terminal environment' do
       mode = described_class.new('TERM' => 'amiga-8bit')
       expect(mode.from_term).to eq(256)
