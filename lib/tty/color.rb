@@ -27,8 +27,8 @@ module TTY
     def supports?
       Support.new(ENV, verbose: verbose).supports?
     end
-    alias_method :color?, :supports?
-    alias_method :supports_color?, :supports?
+    alias color? supports?
+    alias supports_color? supports?
 
     # Check how many colors this terminal supports
     #
