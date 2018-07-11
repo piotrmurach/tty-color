@@ -1,8 +1,8 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
-require 'tty/color/support'
-require 'tty/color/mode'
-require 'tty/color/version'
+require_relative 'color/support'
+require_relative 'color/mode'
+require_relative 'color/version'
 
 module TTY
   # Responsible for checking terminal color support
