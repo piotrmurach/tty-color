@@ -1,5 +1,10 @@
 # Change log
 
+## [v0.4.3] - 2018-07-11
+
+### Fixed
+* Fix to support iTerm 2.app for 256 color mode detection by Michael Lang(@mwlang)
+
 ## [v0.4.2] - 2017-02-06
 
 ### Fixed
@@ -43,6 +48,7 @@
 
 * Initial implementation and release
 
+[v0.4.3]: https://github.com/peter-murach/tty-color/compare/v0.4.2...v0.4.3
 [v0.4.2]: https://github.com/peter-murach/tty-color/compare/v0.4.1...v0.4.2
 [v0.4.1]: https://github.com/peter-murach/tty-color/compare/v0.4.0...v0.4.1
 [v0.4.0]: https://github.com/peter-murach/tty-color/compare/v0.3.0...v0.4.0
