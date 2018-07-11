@@ -2,6 +2,11 @@
 
 ## [v0.4.3] - 2018-07-11
 
+### Changed
+* Change to use relative file paths
+* Change to ensure immutable strings
+* Change Color to use alias call
+
 ### Fixed
 * Fix to support iTerm 2.app for 256 color mode detection by Michael Lang(@mwlang)
 
