@@ -1,4 +1,5 @@
 # TTY::Color [![Gitter](https://badges.gitter.im/Join%20Chat.svg)][gitter]
+
 [![Gem Version](https://badge.fury.io/rb/tty-color.svg)][gem]
 [![Build Status](https://secure.travis-ci.org/piotrmurach/tty-color.svg?branch=master)][travis]
 [![Build status](https://ci.appveyor.com/api/projects/status/j1nflklmnfrb2yrf?svg=true)][appveyor]
@@ -85,4 +86,4 @@ color -m
 
 ## Copyright
 
-Copyright (c) 2016-2017 Piotr Murach. See LICENSE for further details.
+Copyright (c) 2016-2018 Piotr Murach. See LICENSE for further details.
