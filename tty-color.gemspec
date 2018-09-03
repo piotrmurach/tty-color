@@ -12,7 +12,10 @@ Gem::Specification.new do |spec|
   spec.homepage      = "http://piotrmurach.github.io/tty"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0")
+  spec.files         = Dir['{lib,spec}/**/*.rb']
+  spec.files        += Dir['tasks/*', 'tty-color.gemspec']
+  spec.files        += Dir['README.md', 'CHANGELOG.md', 'LICENSE.txt', 'Rakefile']
+  puts spec.files
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^spec})
   spec.require_paths = ["lib"]
