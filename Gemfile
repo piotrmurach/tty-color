@@ -7,7 +7,7 @@ group :development do
 end
 
 group :metrics do
-  gem 'coveralls', '~> 0.8.2'
-  gem 'simplecov', '~> 0.10.0'
+  gem 'simplecov', '~> 0.14.1'
+  gem 'coveralls', '~> 0.8.21'
   gem 'yardstick', '~> 0.9.9'
 end
