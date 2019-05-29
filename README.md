@@ -74,13 +74,15 @@ To check if terminal supports colors do:
 color -s
 ```
 
-and to check color mode:
+And to check color mode:
 
 ```bash
 color -m
 ```
 
 ## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/piotrmurach/tty-color. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 1. Fork it ( https://github.com/piotrmurach/tty-color/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -90,4 +92,4 @@ color -m
 
 ## Copyright
 
-Copyright (c) 2016-2018 Piotr Murach. See LICENSE for further details.
+Copyright (c) 2016 Piotr Murach. See LICENSE for further details.
