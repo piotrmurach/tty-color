@@ -1,7 +1,7 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module TTY
   module Color
-    VERSION = "0.4.3"
+    VERSION = '0.5.0'
   end # Color
 end # TTY
