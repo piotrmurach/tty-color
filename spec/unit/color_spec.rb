@@ -1,6 +1,14 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 RSpec.describe TTY::Color, 'integratation' do
+  it "defaults output to stderr" do
+    expect(TTY::Color.output).to eq($stderr)
+  end
+
+  it "defaults verbose mode to false" do
+    expect(TTY::Color.verbose).to eq(false)
+  end
+
   it "accesses color mode" do
     mode_instance = spy(:mode)
     allow(TTY::Color::Mode).to receive(:new).and_return(mode_instance)
