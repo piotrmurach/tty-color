@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe TTY::Color::Support, '#supports?' do
+RSpec.describe TTY::Color::Support, '#support?' do
   it "doesn't check color support for non tty terminal" do
     support = described_class.new({})
     allow(TTY::Color).to receive(:tty?).and_return(false)
-    expect(support.supports?).to eq(false)
+    expect(support.support?).to eq(false)
   end
 
   it "fails to find out color support" do
@@ -16,7 +16,7 @@ RSpec.describe TTY::Color::Support, '#supports?' do
     allow(support).to receive(:from_term).and_return(TTY::Color::NoValue)
     allow(support).to receive(:from_env).and_return(TTY::Color::NoValue)
 
-    expect(support.supports?).to eq(false)
+    expect(support.support?).to eq(false)
 
     expect(support).to have_received(:from_term).ordered
     expect(support).to have_received(:from_tput).ordered
@@ -29,7 +29,7 @@ RSpec.describe TTY::Color::Support, '#supports?' do
     allow(TTY::Color).to receive(:tty?).and_return(true)
     allow(support).to receive(:from_tput)
 
-    expect(support.supports?).to eq(true)
+    expect(support.support?).to eq(true)
     expect(support).to_not have_received(:from_tput)
   end
 

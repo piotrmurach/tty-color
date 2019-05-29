@@ -19,7 +19,7 @@ module TTY
       #   true when terminal supports color, false otherwise
       #
       # @api public
-      def supports?
+      def support?
         return false unless TTY::Color.tty?
 
         value = false

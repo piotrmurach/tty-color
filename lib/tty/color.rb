@@ -25,7 +25,7 @@ module TTY
     #
     # @api public
     def support?
-      Support.new(ENV, verbose: verbose).supports?
+      Support.new(ENV, verbose: verbose).support?
     end
     alias supports? support?
     alias color? support?

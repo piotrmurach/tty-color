@@ -22,8 +22,8 @@ RSpec.describe TTY::Color, 'integratation' do
     support_instance = spy(:support)
     allow(TTY::Color::Support).to receive(:new).and_return(support_instance)
 
-    described_class.supports?
+    described_class.support?
 
-    expect(support_instance).to have_received(:supports?)
+    expect(support_instance).to have_received(:support?)
   end
 end
