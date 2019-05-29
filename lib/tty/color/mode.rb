@@ -21,6 +21,8 @@ module TTY
 
       TERM_8 = /vt100|xnuppc|wy350/x
 
+      METHODS = %w[from_term from_tput].freeze
+
       def initialize(env)
         @env = env
       end
@@ -35,7 +37,7 @@ module TTY
         return 0 unless TTY::Color.tty?
 
         value = 8
-        %w(from_term from_tput).each do |from_check|
+        METHODS.each do |from_check|
           break if (value = public_send(from_check)) != NoValue
         end
         return 8 if value == NoValue
