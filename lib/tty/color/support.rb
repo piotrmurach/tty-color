@@ -3,7 +3,8 @@
 module TTY
   module Color
     class Support
-      SOURCES = %w(from_term from_tput from_env from_curses).freeze
+      SOURCES = %w[from_term from_tput from_env from_curses].freeze
+      ENV_VARS = %w[COLORTERM ANSICON].freeze
 
       # Initialize a color support
       # @api public
@@ -25,8 +26,7 @@ module TTY
         SOURCES.each do |from_check|
           break if (value = public_send(from_check)) != NoValue
         end
-        return false if value == NoValue
-        value
+        value == NoValue ? false : value
       end
 
       # Inspect environment $TERM variable for color support
@@ -44,10 +44,9 @@ module TTY
       #
       # @api private
       def from_tput
+        return NoValue if !TTY::Color.command?("tput colors")
+
         cmd = %q(tput colors 2>/dev/null)
-        if !TTY::Color.command?("tput colors")
-          return NoValue
-        end
         `#{cmd}`.to_i > 2
       rescue Errno::ENOENT
         NoValue
@@ -57,7 +56,7 @@ module TTY
       #
       # @api private
       def from_env
-        ['COLORTERM', 'ANSICON'].any? { |key| @env.key?(key) } || NoValue
+        ENV_VARS.any? { |key| @env.key?(key) } || NoValue
       end
 
       # Attempt to load curses to check color support
@@ -67,6 +66,7 @@ module TTY
       # @api private
       def from_curses(curses_class = nil)
         return NoValue if TTY::Color.windows?
+
         require 'curses'
 
         if defined?(Curses)
