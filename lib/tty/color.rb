@@ -24,11 +24,12 @@ module TTY
     # @return [Boolean]
     #
     # @api public
-    def supports?
+    def support?
       Support.new(ENV, verbose: verbose).supports?
     end
-    alias color? supports?
-    alias supports_color? supports?
+    alias supports? support?
+    alias color? support?
+    alias supports_color? support?
 
     # Check how many colors this terminal supports
     #

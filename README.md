@@ -44,8 +44,8 @@ Or install it yourself as:
 **TTY::Color** allows you to check if terminal supports color:
 
 ```ruby
-TTY::Color.color?     # => true
-TTY::Color.supports?  # => true
+TTY::Color.color?    # => true
+TTY::Color.support?  # => true
 ```
 
 Also you can get the number of colors supported by the terminal:
