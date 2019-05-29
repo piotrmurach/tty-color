@@ -5,8 +5,8 @@ require 'tty/color/version'
 Gem::Specification.new do |spec|
   spec.name          = 'tty-color'
   spec.version       = TTY::Color::VERSION
-  spec.authors       = ['Piotr Murach']
-  spec.email         = [""]
+  spec.authors       = ["Piotr Murach"]
+  spec.email         = ["me@piotrmurach.com"]
   spec.summary       = %q{Terminal color capabilities detection}
   spec.description   = %q{Terminal color capabilities detection}
   spec.homepage      = "http://piotrmurach.github.io/tty"
@@ -19,7 +19,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^spec})
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency 'bundler', '>= 1.5.0', '< 2.0'
+  spec.required_ruby_version = '>= 2.0.0'
+
+  spec.add_development_dependency 'bundler', '>= 1.5.0'
   spec.add_development_dependency 'rspec', '~> 3.1'
   spec.add_development_dependency 'rake'
 end
