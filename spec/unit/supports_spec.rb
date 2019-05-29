@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 RSpec.describe TTY::Color::Support, '#supports?' do
   it "doesn't check color support for non tty terminal" do
