@@ -12,11 +12,11 @@ Gem::Specification.new do |spec|
   if spec.respond_to?(:metadata=)
     spec.metadata = {
       "allowed_push_host" => "https://rubygems.org",
-      "bug_tracker_uri"   => "https://github.com/piotrmurach/tty-prompt/issues",
-      "changelog_uri"     => "https://github.com/piotrmurach/tty-prompt/blob/master/CHANGELOG.md",
-      "documentation_uri" => "https://www.rubydoc.info/gems/tty-prompt",
+      "bug_tracker_uri"   => "https://github.com/piotrmurach/tty-color/issues",
+      "changelog_uri"     => "https://github.com/piotrmurach/tty-color/blob/master/CHANGELOG.md",
+      "documentation_uri" => "https://www.rubydoc.info/gems/tty-color",
       "homepage_uri"      => spec.homepage,
-      "source_code_uri"   => "https://github.com/piotrmurach/tty-prompt"
+      "source_code_uri"   => "https://github.com/piotrmurach/tty-color"
     }
   end
   spec.files         = Dir["lib/**/*", "README.md", "CHANGELOG.md", "LICENSE.txt"]
