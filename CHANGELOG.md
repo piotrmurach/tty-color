@@ -4,6 +4,7 @@
 
 ### Changed
 * Change gemspec and remove bundler as dev dependency
+* Change TTY::Color::Support to define verbose as keyword argument
 
 ### Fix
 * Fix gemspec metadata links by Igor Kapkov(@igas)
