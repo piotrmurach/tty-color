@@ -68,16 +68,20 @@ puts color?
 
 [tty-color-cli](https://github.com/piotrmurach/tty-color-cli) is a command line tool for the **TTY::Color**.
 
-To check if terminal supports colors do:
+To check if terminal supports colors use `-s|--support`:
 
 ```bash
-color -s
+tty-color -s
+tty-color --support
+# => true
 ```
 
-And to check color mode:
+And to check color mode use `-m|--mode` option:
 
 ```bash
-color -m
+tty-color -m
+tty-color --mode
+# => 256
 ```
 
 ## Development
