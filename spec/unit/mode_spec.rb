@@ -26,69 +26,25 @@ RSpec.describe TTY::Color::Mode, "detecting mode" do
   end
 
   context "#from_term" do
-    it "infers mode for xterm-256color" do
-      mode = described_class.new("TERM" => "xterm-256color")
-      expect(mode.from_term).to eq(256)
-    end
-
-    it "infers mode for iTerm.app" do
-      mode = described_class.new("TERM" => "iTerm.app")
-      expect(mode.from_term).to eq(256)
-    end
-
-    it "infers mode for iTerm 2.app" do
-      mode = described_class.new("TERM" => "iTerm 2.app")
-      expect(mode.from_term).to eq(256)
-    end
-
-    it "infers mode from terminal environment" do
-      mode = described_class.new("TERM" => "amiga-8bit")
-      expect(mode.from_term).to eq(256)
-    end
-
-    it "infers mode for wy730" do
-      mode = described_class.new("TERM" => "wy370-105k")
-      expect(mode.from_term).to eq(64)
-    end
-
-    it "infers mode for d430-unix-ccc" do
-      mode = described_class.new("TERM" => "d430-unix-ccc")
-      expect(mode.from_term).to eq(52)
-    end
-
-    it "infers mode for d430-unix-s-ccc" do
-      mode = described_class.new("TERM" => "d430c-unix-s-ccc")
-      expect(mode.from_term).to eq(52)
-    end
-
-    it "infers mode for nsterm-bce" do
-      mode = described_class.new("TERM" => "nsterm-bce")
-      expect(mode.from_term).to eq(16)
-    end
-
-    it "infers mode for d430-c" do
-      mode = described_class.new("TERM" => "d430c-dg")
-      expect(mode.from_term).to eq(16)
-    end
-
-    it "infers mode for d430-unix-w" do
-      mode = described_class.new("TERM" => "d430-unix-w")
-      expect(mode.from_term).to eq(16)
-    end
-
-    it "infers mode for vt100" do
-      mode = described_class.new("TERM" => "konsole-vt100")
-      expect(mode.from_term).to eq(8)
-    end
-
-    it "infers mode for xnuppc" do
-      mode = described_class.new("TERM" => "xnuppc+basic")
-      expect(mode.from_term).to eq(8)
-    end
-
-    it "infers mode fro dummy terminal" do
-      mode = described_class.new("TERM" => "dummy")
-      expect(mode.from_term).to eq(0)
+    {
+      "xterm-256color" => 256,
+      "iTerm.app" => 256,
+      "iTerm 2.app" => 256,
+      "amiga-8bit" => 256,
+      "wy370-105k" => 64,
+      "d430-unix-ccc" => 52,
+      "d430c-unix-s-ccc" => 52,
+      "nsterm-bce" => 16,
+      "d430c-dg" => 16,
+      "d430-unix-w" => 16,
+      "konsole-vt100" => 8,
+      "xnuppc+basic" => 8,
+      "dummy" => 0
+    }.each do |term_name, number|
+      it "infers #{term_name.inspect} to have #{number} colors" do
+        mode = described_class.new("TERM" => term_name)
+        expect(mode.from_term).to eq(number)
+      end
     end
 
     it "doesn't match any term variable" do
