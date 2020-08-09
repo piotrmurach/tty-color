@@ -33,8 +33,8 @@ module TTY
       #
       # @api private
       def from_term
-        case @env['TERM']
-        when 'dumb' then false
+        case @env["TERM"]
+        when "dumb" then false
         when /^screen|^xterm|^vt100|color|ansi|cygwin|linux/i then true
         else NoValue
         end
@@ -67,7 +67,7 @@ module TTY
       def from_curses(curses_class = nil)
         return NoValue if TTY::Color.windows?
 
-        require 'curses'
+        require "curses"
 
         if defined?(Curses)
           curses_class ||= Curses
@@ -78,7 +78,7 @@ module TTY
         end
         NoValue
       rescue LoadError
-        warn 'no native curses support' if @verbose
+        warn "no native curses support" if @verbose
         NoValue
       end
     end # Support

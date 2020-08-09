@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe TTY::Color, 'integratation' do
+RSpec.describe TTY::Color, "integratation" do
   it "defaults output to stderr" do
     expect(TTY::Color.output).to eq($stderr)
   end

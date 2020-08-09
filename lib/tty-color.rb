@@ -1,1 +1,1 @@
-require 'tty/color'
+require "tty/color"
