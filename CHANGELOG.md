@@ -1,5 +1,13 @@
 # Change log
 
+## [v0.5.2] - 2020-08-09
+
+### Changed
+* Change gemspec and remove bundler as dev dependency
+
+### Fix
+* Fix gemspec metadata links by Igor Kapkov(@igas)
+
 ## [v0.5.1] - 2020-01-22
 
 ### Changed
@@ -64,6 +72,7 @@
 
 * Initial implementation and release
 
+[v0.5.2]: https://github.com/piotrmurach/tty-color/compare/v0.5.1...v0.5.2
 [v0.5.1]: https://github.com/piotrmurach/tty-color/compare/v0.5.0...v0.5.1
 [v0.5.0]: https://github.com/piotrmurach/tty-color/compare/v0.4.3...v0.5.0
 [v0.4.3]: https://github.com/piotrmurach/tty-color/compare/v0.4.2...v0.4.3
