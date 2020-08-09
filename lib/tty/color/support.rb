@@ -8,9 +8,9 @@ module TTY
 
       # Initialize a color support
       # @api public
-      def initialize(env, options = {})
+      def initialize(env, verbose: false)
         @env = env
-        @verbose = options.fetch(:verbose) { false }
+        @verbose = verbose
       end
 
       # Detect if terminal supports color

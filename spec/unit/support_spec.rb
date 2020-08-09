@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe TTY::Color::Support, '#support?' do
+RSpec.describe TTY::Color::Support, "#support?" do
   it "doesn't check color support for non tty terminal" do
     support = described_class.new({})
     allow(TTY::Color).to receive(:tty?).and_return(false)
@@ -25,7 +25,7 @@ RSpec.describe TTY::Color::Support, '#support?' do
   end
 
   it "detects color support" do
-    support = described_class.new('TERM' => 'xterm')
+    support = described_class.new({"TERM" => "xterm"})
     allow(TTY::Color).to receive(:tty?).and_return(true)
     allow(support).to receive(:from_tput)
 
@@ -33,11 +33,11 @@ RSpec.describe TTY::Color::Support, '#support?' do
     expect(support).to_not have_received(:from_tput)
   end
 
-  context '#from_curses' do
+  context "#from_curses" do
     it "fails to load curses for color support" do
       support = described_class.new({})
       allow(TTY::Color).to receive(:windows?).and_return(false)
-      allow(support).to receive(:require).with('curses').and_raise(LoadError)
+      allow(support).to receive(:require).with("curses").and_raise(LoadError)
       allow(support).to receive(:warn)
 
       expect(support.from_curses).to eq(TTY::Color::NoValue)
@@ -47,7 +47,7 @@ RSpec.describe TTY::Color::Support, '#support?' do
     it "fails to find Curses namespace" do
       support = described_class.new({})
       allow(TTY::Color).to receive(:windows?).and_return(false)
-      allow(support).to receive(:require).with('curses')
+      allow(support).to receive(:require).with("curses")
 
       expect(support.from_curses).to eq(TTY::Color::NoValue)
     end
@@ -55,7 +55,7 @@ RSpec.describe TTY::Color::Support, '#support?' do
     it "sets verbose mode on" do
       support = described_class.new({}, verbose: true)
       allow(TTY::Color).to receive(:windows?).and_return(false)
-      allow(support).to receive(:require).with('curses').and_raise(LoadError)
+      allow(support).to receive(:require).with("curses").and_raise(LoadError)
       allow(support).to receive(:warn)
 
       support.from_curses
@@ -66,7 +66,7 @@ RSpec.describe TTY::Color::Support, '#support?' do
     it "loads curses for color support" do
       support = described_class.new({})
       allow(TTY::Color).to receive(:windows?).and_return(false)
-      allow(support).to receive(:require).with('curses').and_return(true)
+      allow(support).to receive(:require).with("curses").and_return(true)
       stub_const("Curses", Object.new)
       curses = double(:curses)
       allow(curses).to receive(:init_screen)
@@ -84,24 +84,24 @@ RSpec.describe TTY::Color::Support, '#support?' do
     end
   end
 
-  context '#form_term' do
+  context "#form_term" do
     it "fails to find color for dumb terminal" do
-      support = described_class.new('TERM' => 'dumb')
+      support = described_class.new({"TERM" => "dumb"})
       expect(support.from_term).to eq(false)
     end
 
     it "inspects term variable for color capabilities" do
-      support = described_class.new('TERM' => 'xterm')
+      support = described_class.new({"TERM" => "xterm"})
       expect(support.from_term).to eq(true)
     end
 
     it "fails to find color capabilities from term variable " do
-      support = described_class.new('TERM' => 'atari')
+      support = described_class.new({"TERM" => "atari"})
       expect(support.from_term).to eq(TTY::Color::NoValue)
     end
   end
 
-  context '#from_tput' do
+  context "#from_tput" do
     it "fails to find tput utilty" do
       support = described_class.new({})
       cmd = "tput colors"
@@ -110,14 +110,14 @@ RSpec.describe TTY::Color::Support, '#support?' do
     end
   end
 
-  context '#from_env' do
+  context "#from_env" do
     it "finds color support in colorterm variable" do
-      support = described_class.new('COLORTERM' => true)
+      support = described_class.new({"COLORTERM" => true})
       expect(support.from_env).to eq(true)
     end
 
     it "finds ansicon support" do
-      support = described_class.new('ANSICON' => true)
+      support = described_class.new({"ANSICON" => true})
       expect(support.from_env).to eq(true)
     end
 
