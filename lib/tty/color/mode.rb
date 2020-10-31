@@ -3,7 +3,12 @@
 module TTY
   module Color
     class Mode
-      TERM_256 = /iTerm(\s\d+){0,1}.app/x
+      TERM_24BIT = /[+-]direct/
+      TRUECOLORS = 2 ** 24 # 8 bits per RGB channel
+
+      TERM_256 = /^(alacritty|iTerm\s?\d*\.app|kitty|mintty|ms-terminal|
+                    nsterm|nsterm-build\d+|terminator|terminology(-[0-9.]+)?|
+                    termite|vscode)$/x
 
       TERM_64 = /^(hpterm-color|wy370|wy370-105k|wy370-EPC|wy370-nk|
                  wy370-rv|wy370-tek|wy370-vb|wy370-w|wy370-wvb)$/x
@@ -15,7 +20,7 @@ module TTY
                  d430c-unix-s|d430c-unix-sr|d430c-unix-w|d470|d470-7b|d470-dg|
                  d470c|d470c-7b|d470c-dg|dg+color|dg\+fixed|dgunix\+fixed|
                  dgmode\+color|hp\+color|ncr260wy325pp|ncr260wy325wpp|
-                 ncr260wy350pp|ncr260wy350wpp|nsterm|nsterm-c|nsterm-c-acs|
+                 ncr260wy350pp|ncr260wy350wpp|nsterm-c|nsterm-c-acs|
                  nsterm-c-s|nsterm-c-s-7|nsterm-c-s-acs|nsterm\+c|
                  nsterm-7-c|nsterm-bce)$/x
 
@@ -30,7 +35,7 @@ module TTY
       # Detect supported colors
       #
       # @return [Integer]
-      #   out of 0, 8, 16, 52, 64, 256
+      #   out of 0, 8, 16, 52, 66, 256, 2^24
       #
       # @api public
       def mode
@@ -51,6 +56,7 @@ module TTY
       # @api private
       def from_term
         case @env["TERM"]
+        when TERM_24BIT then TRUECOLORS
         when /[\-\+](\d+)color/ then $1.to_i
         when /[\-\+](\d+)bit/   then 2 ** $1.to_i
         when TERM_256 then 256
