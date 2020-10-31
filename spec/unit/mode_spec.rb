@@ -27,8 +27,8 @@ RSpec.describe TTY::Color::Mode, "detecting mode" do
 
   context "#from_term" do
     {
-      "xterm+direct" => 16777216,
-      "vscode-direct" => 16777216,
+      "xterm+direct" => 16_777_216,
+      "vscode-direct" => 16_777_216,
       "xterm-256color" => 256,
       "alacritty" => 256,
       "mintty" => 256,

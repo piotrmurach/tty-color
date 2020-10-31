@@ -3,7 +3,7 @@
 module TTY
   module Color
     class Mode
-      TERM_24bit = /[+-]direct/
+      TERM_24BIT = /[+-]direct/
       TRUECOLORS = 2 ** 24 # 8 bits per RGB channel
 
       TERM_256 = /^(alacritty|iTerm\s?\d*\.app|kitty|mintty|ms-terminal|
