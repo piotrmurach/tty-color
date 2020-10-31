@@ -26,4 +26,14 @@ RSpec.describe TTY::Color, "integratation" do
 
     expect(support_instance).to have_received(:support?)
   end
+
+  it "accesses disabled support" do
+    support_instance = spy(:support, disabled?: :maybe)
+    allow(TTY::Color::Support).to receive(:new).and_return(support_instance)
+
+    expect(described_class.disabled?).to eq(:maybe)
+
+    expect(support_instance).to have_received(:disabled?)
+  end
+
 end

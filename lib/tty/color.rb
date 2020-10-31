@@ -31,6 +31,16 @@ module TTY
     alias color? support?
     alias supports_color? support?
 
+    # Detect if color support has been disabled with NO_COLOR ENV var.
+    #
+    # @return [Boolean]
+    #   true when terminal color support has been disabled, false otherwise
+    #
+    # @api public
+    def disabled?
+      Support.new(ENV, verbose: verbose).disabled?
+    end
+
     # Check how many colors this terminal supports
     #
     # @return [Integer]
