@@ -84,7 +84,7 @@ RSpec.describe TTY::Color::Support, "#support?" do
     end
   end
 
-  context "#form_term" do
+  context "#from_term" do
     it "fails to find color for dumb terminal" do
       support = described_class.new({"TERM" => "dumb"})
       expect(support.from_term).to eq(false)
@@ -92,6 +92,8 @@ RSpec.describe TTY::Color::Support, "#support?" do
 
     it "inspects term variable for color capabilities" do
       support = described_class.new({"TERM" => "xterm"})
+      expect(support.from_term).to eq(true)
+      support = described_class.new({"TERM" => "tmux-256color"})
       expect(support.from_term).to eq(true)
     end
 

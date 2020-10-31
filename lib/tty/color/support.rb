@@ -6,6 +6,25 @@ module TTY
       SOURCES = %w[from_term from_tput from_env from_curses].freeze
       ENV_VARS = %w[COLORTERM ANSICON].freeze
 
+      TERM_REGEX = /
+        color|  # explicitly claims color support in the name
+        direct| # explicitly claims "direct color" (24 bit) support
+
+        #{Mode::TERM_256}|
+        #{Mode::TERM_64}|
+        #{Mode::TERM_52}|
+        #{Mode::TERM_16}|
+        #{Mode::TERM_8}|
+
+        ^ansi(\.sys.*)?$|
+        ^cygwin|
+        ^linux|
+        ^putty|
+        ^rxvt|
+        ^screen|
+        ^tmux|
+        ^xterm /xi
+
       # Initialize a color support
       # @api public
       def initialize(env, verbose: false)
@@ -35,7 +54,7 @@ module TTY
       def from_term
         case @env["TERM"]
         when "dumb" then false
-        when /^screen|^xterm|^vt100|color|ansi|cygwin|linux/i then true
+        when TERM_REGEX then true
         else NoValue
         end
       end

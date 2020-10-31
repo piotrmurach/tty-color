@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative "color/support"
 require_relative "color/mode"
+require_relative "color/support"
 require_relative "color/version"
 
 module TTY
