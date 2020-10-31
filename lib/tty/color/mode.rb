@@ -56,7 +56,7 @@ module TTY
       # @api private
       def from_term
         case @env["TERM"]
-        when TERM_24bit then TRUECOLORS
+        when TERM_24BIT then TRUECOLORS
         when /[\-\+](\d+)color/ then $1.to_i
         when /[\-\+](\d+)bit/   then 2 ** $1.to_i
         when TERM_256 then 256
