@@ -7,6 +7,12 @@ RSpec.describe TTY::Color::Support, "#support?" do
     expect(support.support?).to eq(false)
   end
 
+  it "disables color support when NO_COLOR is set" do
+    support = described_class.new({"NO_COLOR" => "1"})
+    expect(support.support?).to eq(false)
+    expect(support).to be_disabled
+  end
+
   it "fails to find out color support" do
     support = described_class.new({})
     allow(TTY::Color).to receive(:tty?).and_return(true)

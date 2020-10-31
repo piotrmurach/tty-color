@@ -21,12 +21,24 @@ module TTY
       # @api public
       def support?
         return false unless TTY::Color.tty?
+        return false if disabled?
 
         value = false
         SOURCES.each do |from_check|
           break if (value = public_send(from_check)) != NoValue
         end
         value == NoValue ? false : value
+      end
+
+      # Detect if color support has been disabled with NO_COLOR ENV var.
+      #
+      # @return [Boolean]
+      #   true when terminal color support has been disabled, false otherwise
+      #
+      # @api public
+      def disabled?
+        no_color = @env["NO_COLOR"]
+        !(no_color.nil? || no_color.empty?)
       end
 
       # Inspect environment $TERM variable for color support
