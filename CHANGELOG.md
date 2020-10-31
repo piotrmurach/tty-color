@@ -1,5 +1,11 @@
 # Change log
 
+## [v0.6.0] - unreleased
+
+### Added
+* Add 24bit color aka "direct color" aka "truecolor" by @nevans
+* Add support for NO_COLOR env var by @nevans
+
 ## [v0.5.2] - 2020-08-09
 
 ### Changed
@@ -73,6 +79,7 @@
 
 * Initial implementation and release
 
+[v0.6.0]: https://github.com/piotrmurach/tty-color/compare/v0.5.2...v0.6.0
 [v0.5.2]: https://github.com/piotrmurach/tty-color/compare/v0.5.1...v0.5.2
 [v0.5.1]: https://github.com/piotrmurach/tty-color/compare/v0.5.0...v0.5.1
 [v0.5.0]: https://github.com/piotrmurach/tty-color/compare/v0.4.3...v0.5.0
