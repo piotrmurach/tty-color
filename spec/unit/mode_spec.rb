@@ -66,10 +66,34 @@ RSpec.describe TTY::Color::Mode, "detecting mode" do
   end
 
   context "#from_tput" do
-    it "fails to find tput utilty" do
+    it "fails to find tput utility" do
       mode = described_class.new({})
-      cmd = "tput colors"
-      allow(TTY::Color).to receive(:command?).with(cmd).and_return(nil)
+      allow(TTY::Color).to receive(:command?).with("tput colors").and_return(nil)
+
+      expect(mode.from_tput).to eq(TTY::Color::NoValue)
+    end
+
+    it "runs tput and detects 8 colors" do
+      allow(TTY::Color).to receive(:command?).with("tput colors").and_return(true)
+      mode = described_class.new({})
+      allow(mode).to receive(:`).and_return("8")
+
+      expect(mode.from_tput).to eq(8)
+    end
+
+    it "runs tput but finds less than 8 colors" do
+      allow(TTY::Color).to receive(:command?).with("tput colors").and_return(true)
+      mode = described_class.new({})
+      allow(mode).to receive(:`).and_return("2")
+
+      expect(mode.from_tput).to eq(TTY::Color::NoValue)
+    end
+
+    it "raises error when running tput" do
+      allow(TTY::Color).to receive(:command?).with("tput colors").and_return(true)
+      mode = described_class.new({})
+      allow(mode).to receive(:`).and_raise(Errno::ENOENT)
+
       expect(mode.from_tput).to eq(TTY::Color::NoValue)
     end
   end
