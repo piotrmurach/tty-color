@@ -8,6 +8,7 @@
 
 ### Changed
 * Change to freeze all regular expressions
+* Change to increase test coverage to 100%
 
 ## [v0.5.2] - 2020-08-09
 
