@@ -112,8 +112,32 @@ RSpec.describe TTY::Color::Support, "#support?" do
   context "#from_tput" do
     it "fails to find tput utilty" do
       support = described_class.new({})
-      cmd = "tput colors"
-      allow(TTY::Color).to receive(:command?).with(cmd).and_return(nil)
+      allow(TTY::Color).to receive(:command?).with("tput colors").and_return(nil)
+
+      expect(support.from_tput).to eq(TTY::Color::NoValue)
+    end
+
+    it "runs tput and detects 8 colors" do
+      allow(TTY::Color).to receive(:command?).with("tput colors").and_return(true)
+      support = described_class.new({})
+      allow(support).to receive(:`).and_return("8")
+
+      expect(support.from_tput).to eq(true)
+    end
+
+    it "runs tput but finds no colors" do
+      allow(TTY::Color).to receive(:command?).with("tput colors").and_return(true)
+      support = described_class.new({})
+      allow(support).to receive(:`).and_return("2")
+
+      expect(support.from_tput).to eq(false)
+    end
+
+    it "raises error when running tput" do
+      allow(TTY::Color).to receive(:command?).with("tput colors").and_return(true)
+      support = described_class.new({})
+      allow(support).to receive(:`).and_raise(Errno::ENOENT)
+
       expect(support.from_tput).to eq(TTY::Color::NoValue)
     end
   end
