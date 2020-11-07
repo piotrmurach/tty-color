@@ -6,6 +6,9 @@
 * Add 24bit color aka "direct color" aka "truecolor" by @nevans
 * Add support for NO_COLOR env var by @nevans
 
+### Changed
+* Change to freeze all regular expressions
+
 ## [v0.5.2] - 2020-08-09
 
 ### Changed
