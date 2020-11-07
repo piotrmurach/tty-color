@@ -1,6 +1,6 @@
 # Change log
 
-## [v0.6.0] - unreleased
+## [v0.6.0] - 2020-11-07
 
 ### Added
 * Add 24bit color aka "direct color" aka "truecolor" by @nevans
