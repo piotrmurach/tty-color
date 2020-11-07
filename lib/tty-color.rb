@@ -1,1 +1,1 @@
-require "tty/color"
+require_relative "tty/color"
