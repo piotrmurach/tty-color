@@ -50,4 +50,10 @@ RSpec.describe TTY::Color, "integratation" do
 
     expect(described_class.command?("echo")).to eq(true)
   end
+
+  it "detects windows platform" do
+    stub_const("::File::ALT_SEPARATOR", "\\")
+
+    expect(described_class.windows?).to eq(true)
+  end
 end
