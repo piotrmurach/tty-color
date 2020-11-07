@@ -75,9 +75,7 @@ module TTY
       #
       # @api private
       def from_tput
-        if !TTY::Color.command?("tput colors")
-          return NoValue
-        end
+        return NoValue unless TTY::Color.command?("tput colors")
 
         colors = `tput colors 2>/dev/null`.to_i
         colors >= 8 ? colors : NoValue
