@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://piotrmurach.github.io/tty" target="_blank"><img width="130" src="https://cdn.rawgit.com/piotrmurach/tty/master/images/tty.png" alt="tty logo" /></a>
+  <a href="https://ttytoolkit.org"><img width="130" src="https://github.com/piotrmurach/tty/raw/master/images/tty.png" alt="TTY Toolkit logo"/></a>
 </div>
 
 # TTY::Color [![Gitter](https://badges.gitter.im/Join%20Chat.svg)][gitter]
@@ -28,7 +28,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'tty-color'
+gem "tty-color"
 ```
 
 And then execute:
@@ -48,10 +48,16 @@ TTY::Color.color?    # => true
 TTY::Color.support?  # => true
 ```
 
-Also you can get the number of colors supported by the terminal:
+You can also get the number of colors supported by the terminal using `mode` method:
 
 ```ruby
 TTY::Color.mode # => 64
+```
+
+To detect if color support has been disabled with `NO_COLOR` environment variable, use `disabled?`:
+
+```ruby
+TTY::Color.disabled? # => false
 ```
 
 **TTY::Color** is just a module hence you can include it into your scripts directly:
