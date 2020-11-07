@@ -23,7 +23,7 @@ module TTY
         ^rxvt|
         ^screen|
         ^tmux|
-        ^xterm /xi
+        ^xterm/xi.freeze
 
       # Initialize a color support
       # @api public
@@ -75,10 +75,9 @@ module TTY
       #
       # @api private
       def from_tput
-        return NoValue if !TTY::Color.command?("tput colors")
+        return NoValue unless TTY::Color.command?("tput colors")
 
-        cmd = %q(tput colors 2>/dev/null)
-        `#{cmd}`.to_i > 2
+        `tput colors 2>/dev/null`.to_i > 2
       rescue Errno::ENOENT
         NoValue
       end
