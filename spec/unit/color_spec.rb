@@ -36,4 +36,18 @@ RSpec.describe TTY::Color, "integratation" do
     expect(support_instance).to have_received(:disabled?)
   end
 
+  it "checks unknown command without raising errors and returns false" do
+    allow(described_class).to receive(:system)
+      .with("unknown-command", { out: ::File::NULL, err: ::File::NULL })
+      .and_return(nil)
+
+    expect(described_class.command?("unknown-command")).to eq(false)
+  end
+
+  it "checks 'echo' command and returns true" do
+    allow(described_class).to receive(:system).
+      with("echo", { out: ::File::NULL, err: ::File::NULL }).and_return("")
+
+    expect(described_class.command?("echo")).to eq(true)
+  end
 end
