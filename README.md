@@ -10,7 +10,7 @@
 [![Code Climate](https://codeclimate.com/github/piotrmurach/tty-color/badges/gpa.svg)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/github/piotrmurach/tty-color/badge.svg)][coverage]
 
-[gem]: http://badge.fury.io/rb/tty-color
+[gem]: https://badge.fury.io/rb/tty-color
 [gh_actions_ci]: https://github.com/piotrmurach/tty-color/actions?query=workflow%3ACI
 [appveyor]: https://ci.appveyor.com/project/piotrmurach/tty-color
 [codeclimate]: https://codeclimate.com/github/piotrmurach/tty-color
