@@ -5,13 +5,13 @@
 # TTY::Color
 
 [![Gem Version](https://badge.fury.io/rb/tty-color.svg)][gem]
-[![Actions CI](https://github.com/piotrmurach/tty-color/workflows/CI/badge.svg?branch=master)][gh_actions_ci]
+[![Actions CI](https://github.com/piotrmurach/tty-color/actions/workflows/ci.yml/badge.svg)][gh_actions_ci]
 [![Build status](https://ci.appveyor.com/api/projects/status/j1nflklmnfrb2yrf?svg=true)][appveyor]
 [![Code Climate](https://codeclimate.com/github/piotrmurach/tty-color/badges/gpa.svg)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/github/piotrmurach/tty-color/badge.svg)][coverage]
 
 [gem]: https://badge.fury.io/rb/tty-color
-[gh_actions_ci]: https://github.com/piotrmurach/tty-color/actions?query=workflow%3ACI
+[gh_actions_ci]: https://github.com/piotrmurach/tty-color/actions/workflows/ci.yml
 [appveyor]: https://ci.appveyor.com/project/piotrmurach/tty-color
 [codeclimate]: https://codeclimate.com/github/piotrmurach/tty-color
 [coverage]: https://coveralls.io/github/piotrmurach/tty-color
