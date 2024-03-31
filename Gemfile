@@ -6,10 +6,6 @@ gemspec
 
 gem "json", "2.4.1" if RUBY_VERSION == "2.0.0"
 
-group :development do
-  gem "benchmark-ips", "~> 2.7.2"
-end
-
 group :metrics do
   if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.5.0")
     gem "coveralls_reborn", "~> 0.22.0"
